@@ -1,22 +1,25 @@
-import cors from "cors";
-import path from "path";
-import dotenv from "dotenv";
-import express, { Express, Request, Response } from "express";
+import dotenv from 'dotenv';
+import path from 'path';
+
+dotenv.config({ path: path.join(process.cwd(), '.env.dev') });
+
+import cors from 'cors';
+import express from 'express';
+
+//Routers
 import marvelRouter from "./routers/marvel";
 
-dotenv.config({ path: path.join(process.cwd(), ".env.dev") });
-
-const app: Express = express();
-const port = process.env.PORT || 3000;
+const app = express();
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//Routers
-app.use("/marvel", marvelRouter);
-app.get("/", (_, res) => res.send("Welcome! Everything is working."));
+app.use("/api/v1/marvel", marvelRouter)
 
-app.listen(port, () => {
-  console.log(`Server up and running @ ${port}`);
+
+app.get('/', (_, res) => res.send('Welcome! Everything is working.'));
+
+app.listen(process.env.PORT, () => {
+  console.log(`Server up and running @ ${process.env.PORT}`);
 });

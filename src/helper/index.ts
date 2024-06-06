@@ -2,8 +2,9 @@ import axios from "axios";
 import * as crypto from "crypto";
 import { CharactersData } from "../types";
 
-const apiKeyPrivate = "1e6f6aafb423163832808170aacd3172cce2458a";
-const apiKeyPublic = "b571ad3a936a82f38e38b1ebf7345910";
+const apiKeyPrivate = process.env.MARVEL_API_KEY_PRIVATE;
+const apiKeyPublic = process.env.MARVEL_API_KEY_PUBLIC;
+
 
 function generateHash(ts: string): string {
   const data = ts + apiKeyPrivate + apiKeyPublic;
@@ -16,7 +17,7 @@ export const getCharacters = async (): Promise<CharactersData> => {
     const hash = generateHash(ts);
 
     const response = await axios.get<CharactersData>(
-      `http://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=${apiKeyPublic}&hash=${hash}`
+      `${process.env.MARVEL_PUBLIC_URl}/characters?ts=${ts}&apikey=${apiKeyPublic}&hash=${hash}`
     );
     return response.data;
   } catch (error) {

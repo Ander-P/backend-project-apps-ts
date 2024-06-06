@@ -1,3 +1,4 @@
 node_modules/
 .env
 build
+nova-dev-420721-firebase-adminsdk.json

@@ -1,7 +1,7 @@
-import { Router } from "express";
+import express from "express";
 import { getCharacters } from "../helper";
 
-const router = Router();
+const router = express.Router();
 
 router.get("/characters", async (_, res) => {
   const response = await getCharacters();
