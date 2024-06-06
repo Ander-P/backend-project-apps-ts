@@ -16,7 +16,7 @@ export const getCharacters = async (): Promise<CharactersData> => {
     const hash = generateHash(ts);
 
     const response = await axios.get<CharactersData>(
-      `${process.env.MARVEL_PUBLIC_URL}/characters?ts=${ts}&apikey=${apiKeyPublic}&hash=${hash}`
+      `http://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=${apiKeyPublic}&hash=${hash}`
     );
     return response.data;
   } catch (error) {
