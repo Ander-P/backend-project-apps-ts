@@ -7,8 +7,9 @@ import cors from "cors";
 import express from "express";
 
 //Routers
-import marvelRouter from "./routers/marvel";
 import aurhRouter from "./routers/auth";
+import marvelRouter from "./routers/marvel";
+import solicitudeRouter from "./routers/solicitude";
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/auth", aurhRouter);
 app.use("/marvel", marvelRouter);
+app.use("/solicitude", solicitudeRouter);
 
 app.get("/", (_, res) => res.send("Welcome! Everything is working."));
 

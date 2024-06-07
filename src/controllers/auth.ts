@@ -64,7 +64,7 @@ export const register = async (req: Request, res: Response) => {
       birthday,
     });
 
-    res.status(200).json({ msg: "User created successfully", uid });
+    res.status(200).json({ msg: "Usuario creado correctamente", uid });
   } catch (error: any) {
     res
       .status(400)
