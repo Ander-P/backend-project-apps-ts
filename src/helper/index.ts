@@ -25,3 +25,19 @@ export const getCharacters = async (): Promise<CharactersData> => {
     throw error;
   }
 };
+
+export const getErrorsLoginUser = (code: string) => {
+    const errorsLogin: Record<string, string> = {
+    INVALID_LOGIN_CREDENTIALS: "Credenciales invalidas",
+    INVALID_EMAIL: "Email invalido"
+    };
+    return errorsLogin[code] || "Error no encontrado";
+};
+
+export function getErrorCreateUser (code: string): string {
+    const errorsAuthCreate: Record<string, string> = {
+      'auth/email-already-exists': 'Email usado en otra cuenta',
+      'auth/invalid-password': 'La contraseña debe ser una cadena con al menos 6 caracteres.'
+    };
+    return errorsAuthCreate[code] || (code ?? 'Error no encontrado');
+};

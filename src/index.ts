@@ -8,6 +8,7 @@ import express from 'express';
 
 //Routers
 import marvelRouter from "./routers/marvel";
+import aurhRouter from "./routers/auth";
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/v1/marvel", marvelRouter)
+app.use("/api/v1/auth", aurhRouter)
 
 
 app.get('/', (_, res) => res.send('Welcome! Everything is working.'));
